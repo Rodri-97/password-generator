@@ -1,3 +1,10 @@
+:root {
+  --bg-color: rgb(36, 35, 44);
+  --light-green: rgb(144, 238, 144);
+  --containers-width: 300px;
+  --special-gray: rgb(128, 124, 146);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +25,7 @@ body {
 }
 
 h1 {
-  color: rgb(128, 124, 146);
+  color: var(--special-gray);
   font-size: 20px;
   margin-bottom: 5px;
 }
@@ -29,16 +36,200 @@ h1 {
   flex-direction: row;
   align-items: center;
 
-  .password-input {
-    background-color: rgb(36, 35, 44);
+  #password-input {
+    background-color: var(--bg-color);
     color: white;
     padding: 15px;
     font-size: 25px;
     border: none;
+    width: var(--containers-width);
+
+    &:focus {
+      outline: none;
+    }
   }
 
-  img {
+  svg {
     position: absolute;
     right: 15px;
+    cursor: pointer;
+
+    &:hover {
+      path {
+        fill: white;
+      }
+    }
+  }
+}
+
+.main-container {
+  background-color: var(--bg-color);
+  padding: 15px;
+  width: var(--containers-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+
+    .value-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .character-length {
+        font-weight: 500;
+      }
+
+      #slider-value {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        color: var(--light-green);
+        font-size: 30px;
+      }
+    }
+
+    #slider {
+      -webkit-appearance: none;
+      appearance: none;
+      background: black;
+      border-radius: 15px;
+      cursor: pointer;
+      height: 10px;
+    }
+
+    #slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border-radius: 30px;
+      border: 2px solid transparent;
+    }
+
+    #slider:focus::-webkit-slider-thumb {
+      background-color: black;
+      border-color: var(--light-green);
+    }
+  }
+
+  .checkboxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 500;
+
+    .checkbox-container {
+      .checkbox,
+      label {
+        cursor: pointer;
+      }
+
+      .checkbox[type="checkbox"] {
+        accent-color: var(--light-green);
+        transform: scale(1.25);
+      }
+    }
+  }
+
+  .strength-container {
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .strength,
+    .strength-bars-container {
+      padding: 10px;
+    }
+
+    .strength {
+      color: var(--special-gray);
+      font-weight: 500;
+    }
+
+    .strength-bars-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      #strength-level {
+        width: 120px;
+        text-align: right;
+      }
+
+      .strength-bars {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        .bar {
+          height: 20px;
+          width: 5px;
+          border: 2px solid white;
+        }
+      }
+    }
+  }
+
+  .generate-btn-container {
+    width: 100%;
+    height: 35px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      svg {
+        path {
+          fill: var(--light-green);
+        }
+      }
+    }
+
+    .generate-btn {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      color: black;
+      background-color: var(--light-green);
+      font-weight: 800;
+      border: 2px solid transparent;
+
+      &:hover {
+        background-color: black;
+        color: var(--light-green);
+        border-color: var(--light-green);
+      }
+    }
+
+    svg {
+      display: block;
+      position: absolute;
+      fill: black;
+      right: 90px;
+    }
   }
 }
