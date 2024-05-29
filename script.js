@@ -1,6 +1,7 @@
 const slider = document.querySelector("#slider");
 const checkboxes = document.querySelectorAll(".checkbox");
 const strengthLevelElement = document.querySelector("#strength-level");
+const passwordInput = document.querySelector("#password-input");
 
 slider.addEventListener("input", () => {
   const sliderValue = document.querySelector("#slider-value");
@@ -182,6 +183,9 @@ function displayPassword() {
 
   const password = generatePassword(length, ...conditions);
 
-  const passwordInput = document.querySelector("#password-input");
   passwordInput.value = password;
+}
+
+function copyPasswordToClipboard() {
+  navigator.clipboard.writeText(passwordInput.value);
 }
