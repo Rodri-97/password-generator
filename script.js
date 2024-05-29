@@ -37,7 +37,7 @@ for (let i = 0; i < checkboxes.length; i++) {
 }
 
 function getStrengthLevel(sliderValue, numberOfCheckedCheckboxes) {
-  if (sliderValue < 7) return "TOO WEAK!";
+  if (sliderValue < 8) return "TOO WEAK!";
 
   if (sliderValue < 10) {
     if (numberOfCheckedCheckboxes < 3) return "TOO WEAK!";
