@@ -98,3 +98,90 @@ function getNumberOfCheckedCheckboxes() {
 
   return numberOfCheckedCheckboxes;
 }
+
+function generatePassword(
+  length,
+  includeUpperCaseLetters,
+  includeLowerCaseLetters,
+  includeNumbers,
+  includeSymbols
+) {
+  const numbers = "0123456789";
+  const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+  const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+  const allCharacters = numbers + lowerCaseLetters + upperCaseLetters + symbols;
+  const allCharactersLength = allCharacters.length;
+
+  let password = [];
+
+  if (includeUpperCaseLetters) {
+    password.push(
+      upperCaseLetters.charAt(
+        Math.floor(Math.random() * upperCaseLetters.length)
+      )
+    );
+  }
+
+  if (includeLowerCaseLetters) {
+    password.push(
+      lowerCaseLetters.charAt(
+        Math.floor(Math.random() * lowerCaseLetters.length)
+      )
+    );
+  }
+
+  if (includeNumbers) {
+    password.push(numbers.charAt(Math.floor(Math.random() * numbers.length)));
+  }
+
+  if (includeSymbols) {
+    password.push(symbols.charAt(Math.floor(Math.random() * symbols.length)));
+  }
+
+  for (let i = password.length; i < length; i++) {
+    password.push(
+      allCharacters.charAt(Math.floor(Math.random() * allCharactersLength))
+    );
+  }
+
+  password = password.sort(() => Math.random() - 0.5);
+
+  return password.join("");
+}
+
+function displayPassword() {
+  const length = Number(slider.value);
+
+  const strengthLevel = getStrengthLevel(
+    length,
+    getNumberOfCheckedCheckboxes()
+  );
+
+  if (strengthLevel === "TOO WEAK!") return null;
+
+  let conditions = [];
+
+  const includeUpperCaseLetters = document.querySelector(
+    "#uppercase-letters-checkbox"
+  ).checked;
+
+  const includeLowerCaseLetters = document.querySelector(
+    "#lowercase-letters-checkbox"
+  ).checked;
+
+  const includeNumbers = document.querySelector("#numbers-checkbox").checked;
+
+  const includeSymbols = document.querySelector("#symbols-checkbox").checked;
+
+  includeUpperCaseLetters ? conditions.push(true) : conditions.push(false);
+  includeLowerCaseLetters ? conditions.push(true) : conditions.push(false);
+  includeNumbers ? conditions.push(true) : conditions.push(false);
+  includeSymbols ? conditions.push(true) : conditions.push(false);
+
+  const password = generatePassword(length, ...conditions);
+
+  const passwordInput = document.querySelector("#password-input");
+  passwordInput.value = password;
+}
