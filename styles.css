@@ -148,7 +148,7 @@ h1 {
   }
 
   .strength-container,
-  .generate-btn-container {
+  .generate-container {
     height: 45px;
   }
 
@@ -197,7 +197,7 @@ h1 {
     }
   }
 
-  .generate-btn-container {
+  .generate-container {
     width: 100%;
     position: relative;
     display: flex;
@@ -211,22 +211,26 @@ h1 {
           fill: var(--light-green);
         }
       }
-    }
 
-    .generate-btn {
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      color: black;
-      background-color: var(--light-green);
-      font-weight: 800;
-      border: 2px solid transparent;
-
-      &:hover {
+      button {
         background-color: black;
         color: var(--light-green);
         border-color: var(--light-green);
       }
+    }
+
+    button,
+    svg {
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      height: 100%;
+      color: black;
+      background-color: var(--light-green);
+      font-weight: 800;
+      border: 2px solid transparent;
     }
 
     svg {
